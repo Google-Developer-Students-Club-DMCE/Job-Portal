@@ -20,9 +20,6 @@ const Admin = ({ setAllJobs }) => {
         e.preventDefault()
         axios.post("http://127.0.0.1:8000/addpost/", newJob)
             .then((res) => {
-                setAllJobs((prev) => {
-                    return [...prev, newJob]
-                })
                 alert("Job Posted Sucessfully")
             })
             .catch(e => alert("Somthing went Wrong!"))
