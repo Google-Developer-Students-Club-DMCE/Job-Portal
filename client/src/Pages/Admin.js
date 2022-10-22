@@ -24,8 +24,11 @@ const Admin = ({ setAllJobs, setFetchData }) => {
         alert("Job Posted Sucessfully");
         setFetchData((p) => !p);
       })
-      .catch((e) => alert("Somthing went Wrong!"));
-  };
+      .catch((error) => {
+        let form = document.querySelector("form")
+        form.classList.add("was-validated")
+      })
+  }
 
   return (
     <div
@@ -48,6 +51,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
                 onChange={handleChange}
                 required
               />
+              <div className="invalid-feedback">This field is required</div>
             </div>
             <div className="col-md-6">
               <input
@@ -58,6 +62,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
                 onChange={handleChange}
                 required
               />
+              <div className="invalid-feedback">This field is required</div>
             </div>
             <div className="col-md-12">
               <input
@@ -68,6 +73,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
                 onChange={handleChange}
                 required
               />
+              <div className="invalid-feedback">This field is required</div>
             </div>
             <div className="col-md-12">
               <textarea
@@ -78,6 +84,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
                 onChange={handleChange}
                 required
               ></textarea>
+              <div className="invalid-feedback">This field is required</div>
             </div>
             <button
               className="btn btn-primary mt-4 w-50 mx-auto"
