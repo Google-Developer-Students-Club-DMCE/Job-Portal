@@ -21,18 +21,23 @@ const User = ({ allJobs }) => {
                     <>
                       {allJobs.length > 0 ? (
                         <div className="col-md-4 col-lg-3 mb-4">
-                          <div className="card">
+                          <a
+                            href="#"
+                            className="card job_card h-100 text-center text-decoration-none text-black shadow-sm rounded-3 px-2 py-4"
+                            style={{
+                              backgroundColor: "#f5f9ff",
+                            }}
+                          >
                             <div className="card-body">
-                              <h5 className="card-title">{designation}</h5>
-                              <p className="fw-bold text-primary">
+                              <h2 className="card-title mb-0">{designation}</h2>
+                              <div className="text-primary mb-3">
                                 {company}, {location}
+                              </div>
+                              <p className="card-text text-secondary">
+                                {description}
                               </p>
-                              <p className="card-text">{description}</p>
-                              <a href="#" className="btn btn-primary ">
-                                View Job
-                              </a>
                             </div>
-                          </div>
+                          </a>
                         </div>
                       ) : (
                         "No Jobs Posted"
