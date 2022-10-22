@@ -25,6 +25,6 @@ def add_post(request):
             serializer.save()
             res = {'msg': 'Data Created'}
             return Response(res, status=status.HTTP_201_CREATED)
-        return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     return Response({'data':'Invalid method'},status=status.HTTP_204_NO_CONTENT)
 
