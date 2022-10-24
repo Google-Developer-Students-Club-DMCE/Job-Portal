@@ -29,11 +29,21 @@ const User = ({ allJobs }) => {
                             }}
                           >
                             <div className="card-body">
-                              <h2 className="card-title mb-0">{designation}</h2>
-                              <div className="text-primary mb-3">
+                              <h4 className="card-title mb-1">{designation}</h4>
+                              <div
+                                className="text-primary mb-3"
+                                style={{
+                                  fontSize: "0.8rem",
+                                }}
+                              >
                                 {company}, {location}
                               </div>
-                              <p className="card-text text-secondary">
+                              <p
+                                className="card-text text-secondary"
+                                style={{
+                                  fontSize: "0.9rem",
+                                }}
+                              >
                                 {description}
                               </p>
                             </div>
