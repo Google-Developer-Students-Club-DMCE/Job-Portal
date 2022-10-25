@@ -9,3 +9,10 @@
   border: none;
   cursor: pointer;
 }
+.job_card {
+  cursor: pointer;
+}
+.job_card:hover {
+  scale: 1.05;
+  transition: all 0.3s ease-in-out;
+}
