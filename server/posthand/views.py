@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from posthand.models import Postapi
@@ -17,14 +19,11 @@ def home(request):
         return Response(serializer.data)
     return Response({'data':'Invalid method'},status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['POST'])
-def add_post(request):
-    if request.method == 'POST':
-        serializer = Postserializers(data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            res = {'msg': 'Data Created'}
-            return Response(res, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response({'data':'Invalid method'},status=status.HTTP_204_NO_CONTENT)
 
+class AddPost(viewsets.ModelViewSet):
+    serializer_class = Postserializers
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
