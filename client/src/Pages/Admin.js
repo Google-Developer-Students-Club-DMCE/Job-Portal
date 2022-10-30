@@ -11,20 +11,30 @@ const Admin = ({ setAllJobs, setFetchData }) => {
   });
 
   const handleChange = (e) => {
-    setNewJob((p) => {
-      return { ...p, [e.target.name]: e.target.value };
-    });
+    setNewJob({ ...newJob, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/addpost/", newJob)
-      .then((res) => {
-        alert("Job Posted Sucessfully");
-        setFetchData((p) => !p);
-      })
-      .catch((e) => alert("Somthing went Wrong!"));
+
+    // checking if all the fields are filled
+    if (
+        newJob.designation === "" ||
+        newJob.company === "" ||
+        newJob.description === "" ||
+        newJob.location === ""
+    ) {
+        alert("Please fill all the fields marked with *");
+        return;
+    } else {
+        axios
+          .post("http://127.0.0.1:8000/addpost/", newJob)
+          .then((res) => {
+            alert("Job Posted Successfully");
+            setFetchData((p) => !p);
+          })
+          .catch((e) => alert("Something went Wrong!"));
+    }
   };
 
   return (
@@ -43,7 +53,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Designation"
+                placeholder="Designation*"
                 name="designation"
                 onChange={handleChange}
                 required
@@ -53,7 +63,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Company name"
+                placeholder="Company name*"
                 name="company"
                 onChange={handleChange}
                 required
@@ -63,7 +73,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Location"
+                placeholder="Location*"
                 name="location"
                 onChange={handleChange}
                 required
@@ -73,7 +83,7 @@ const Admin = ({ setAllJobs, setFetchData }) => {
               <textarea
                 className="form-control"
                 rows="5"
-                placeholder="Job Description"
+                placeholder="Job Description*"
                 name="description"
                 onChange={handleChange}
                 required
@@ -87,9 +97,9 @@ const Admin = ({ setAllJobs, setFetchData }) => {
             </button>
           </div>
           <NavLink to="/">
-            <button className="btn btn-link mx-auto w-100 mt-3">
+            <span className="btn btn-link mx-auto w-100 mt-3">
               View all jobs
-            </button>
+            </span>
           </NavLink>
         </form>
       </div>
